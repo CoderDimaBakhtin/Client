@@ -21,8 +21,7 @@
 
 int main(int argc, char const* argv[])
 {
-
-    
+    // not handled different number of args
     std::string ServerIP_address = argv[1];
     try
     {
@@ -35,7 +34,7 @@ int main(int argc, char const* argv[])
         std::thread MoveTrackingThread(MouseMoveLogic, std::ref(connection), std::ref(mouse));
 
 
-        ClickTrackingThread.join();
+        ClickTrackingThread.join(); // If you do it in such way - there is no need to wait in main
         MoveTrackingThread.join();
     }
     catch(const std::invalid_argument& e)

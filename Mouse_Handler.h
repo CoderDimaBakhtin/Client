@@ -18,10 +18,11 @@
 class Mouse_Handler{
 private:
     int fd, bytes;
-    unsigned char data[4]={0,0,0,0};
+    unsigned char data[4]={0,0,0,0}; // 0 would be enough
 
-    const char *pDevice = "/dev/input/mice";
+    const char *pDevice = "/dev/input/mice"; // move to cpp
 
+    // You don't need them
     int left, middle, right;
     signed char x, y;
 

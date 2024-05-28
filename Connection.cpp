@@ -13,7 +13,7 @@ Connection::Connection(std::string IP_address_,const uint16_t& PORT){//nessesary
 	serv_addr.sin_port = htons(PORT);
 
 	if (inet_pton(AF_INET, IP_address_.c_str(), &serv_addr.sin_addr) <= 0) {
-		throw std::invalid_argument("\nInvalid address/ Address not supported \n");
+		throw std::invalid_argument("\nInvalid address/ Address not supported \n"); // You have problems with exceptions
 	}
 
     if ((status = connect(client_fd, (struct sockaddr*)&serv_addr,sizeof(serv_addr))) < 0) {
@@ -22,14 +22,14 @@ Connection::Connection(std::string IP_address_,const uint16_t& PORT){//nessesary
 
 }
 
-
+// Not synchronized
 void Connection::Send(std::string message){
 
-    send(client_fd, const_cast<char*>(message.c_str()), message.size(), 0);
+    send(client_fd, static_cast<void*>(message.c_str()), message.size(), 0);
 
 }
 	
 
 Connection::~Connection(){
-    close(client_fd);
+    close(client_fd); // shutdown
 }

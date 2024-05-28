@@ -5,12 +5,13 @@
 #include"Logic.h"
 #include <atomic>
 
+// Need to have it in class
 std::atomic<bool> exit_thread_flag{ false };
 
 void MouseButtonClicksLogic(Connection& connection, Mouse_Handler& mouse){
     std::string str;
     while(true){
-        if (!exit_thread_flag) {
+        if (!exit_thread_flag) { // we can do it in while statement
                 
             try
             {
